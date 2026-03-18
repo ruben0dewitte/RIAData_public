@@ -5,11 +5,9 @@ library(here) #easy file referencing, root is set at project root
 library(dplyr)
 library(tidyr)
 
-
-
 # Load data ---------------------------------------------------------------
 
-x = readRDS(here("input","data","usitc_itpd_e_r02.rds"))
+x = readRDS(here("input","data","ITPDE_R03.rds"))
 y = readRDS(here("input","data","usitc_dgd.rds"))
 
 # Aggregate trade data to the country level  (skip this step for industry-level estimations) ------------------------------------------------------
