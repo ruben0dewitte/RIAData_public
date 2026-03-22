@@ -32,6 +32,11 @@ rm(res,UA,url) #clean up
 x = vroom(here("temp","ITPDE_R03_no_names.csv"),col_names = TRUE)
 gc()
 
+x_agg = x %>%
+  filter(industry_id %in% 1:26)
+
+saveRDS(x_agg,file=here("input","data","ITPDE_R03_agg.rds"))
+
 x = lazy_dt(x) %>%
   mutate(flag_zero = ifelse(flag_zero=="u",1,0)) %>%
   group_by(exporter_iso3,exporter_iso3_dynamic,importer_iso3,importer_iso3_dynamic,broad_sector,year) %>%
@@ -42,6 +47,7 @@ x = lazy_dt(x) %>%
 saveRDS(x,file=here("input","data","ITPDE_R03.rds"))
 gc() # clean up
 unlink(here("temp","*")) # remove all files in temp folder
+
 
 
 # Download USITC DGD dataset -----------------------------------------
